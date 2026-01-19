@@ -1,6 +1,6 @@
 # TaskHub
 
-[![Ask DeepWiki]()
+[![TaskHub]()
 
 TaskHub is an intuitive and modern task management web application built with Python and Flask. It provides a clean, responsive interface with a glassmorphism design for managing your daily tasks. The application supports user authentication, task creation and management, profile customization, and personalized settings like a dark mode.
 
