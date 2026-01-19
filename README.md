@@ -1,148 +1,287 @@
-# bSaaS Task & Workflow Management System
+<div id="top">
 
-A **cloud-ready task and workflow management system** built with **Flask**, designed for SaaS applications. It supports user authentication, task management, customizable settings, and can use either **MongoDB Atlas** or local JSON storage.
+<!-- HEADER STYLE: CLASSIC -->
+<div align="center">
+
+<img src="readmeai/assets/logos/purple.svg" width="30%" style="position: relative; top: 0; right: 0;" alt="Project Logo"/>
+
+# TASKHUB
+
+<em></em>
+
+<!-- BADGES -->
+<!-- local repository, no metadata badges. -->
+
+<em>Built with the tools and technologies:</em>
+
+<img src="https://img.shields.io/badge/Flask-000000.svg?style=default&logo=Flask&logoColor=white" alt="Flask">
+<img src="https://img.shields.io/badge/Python-3776AB.svg?style=default&logo=Python&logoColor=white" alt="Python">
+<img src="https://img.shields.io/badge/CSS-663399.svg?style=default&logo=CSS&logoColor=white" alt="CSS">
+
+</div>
+<br>
+
+---
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+    - [Project Index](#project-index)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Testing](#testing)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+---
+
+## Overview
+
+
 
 ---
 
 ## Features
 
-- **User Management**
-  - Signup, login, logout
-  - Profile update (name, email)
-  - Password change
-  - Account deletion
-
-- **Task Management**
-  - Add, edit, delete tasks
-  - Mark tasks as completed
-  - User-specific task lists
-
-- **Settings & Preferences**
-  - Dark/light mode
-  - Email notifications toggle
-  - Profile picture upload (coming soon)
-
-- **Storage Options**
-  - **MongoDB Atlas** (recommended for production)
-  - **Local JSON file** (fallback)
-
-- **Security**
-  - Passwords hashed with **Werkzeug**
-  - Secure session handling
-  - Optional JWT-based extensions possible
+<code>❯ REPLACE-ME</code>
 
 ---
 
-## Tech Stack
+## Project Structure
 
-- **Backend:** Python, Flask, Flask-Login, Flask-Bcrypt
-- **Database:** MongoDB Atlas (default) or local JSON
-- **Templating:** Jinja2 (HTML templates)
-- **Frontend:** Bootstrap (assumed from HTML templates)
-- **Other:** UUID for unique identifiers, bcrypt for password hashing
+```sh
+└── TaskHub/
+    ├── app.py
+    ├── requirements.txt
+    ├── static
+    │   └── js
+    └── templates
+        ├── base.html
+        ├── dashboard.html
+        ├── home.html
+        ├── login.html
+        ├── profile.html
+        ├── Readme.md
+        ├── settings.html
+        ├── signup.html
+        └── styles.css
+```
 
----
+### Project Index
 
-## Installation
-
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/your-username/bsass-task-management.git
-cd bsass-task-management
-Create a virtual environment
-
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-Install dependencies
-
-bash
-Copy code
-pip install -r requirements.txt
-Set environment variables (optional)
-
-bash
-Copy code
-export SECRET_KEY="your-secret-key"
-export MONGO_URI="your-mongodb-connection-string"
-Run the app
-
-bash
-Copy code
-python app.py
-Visit http://localhost:5000 in your browser.
-
-Configuration
-MongoDB Atlas:
-Set MONGO_URI in environment variables. Example:
-
-bash
-Copy code
-mongodb+srv://username:password@cluster0.mongodb.net/?retryWrites=true&w=majority
-Local JSON Storage:
-If MongoDB connection fails or MONGO_URI is empty, data is stored in data.json.
-
-File Structure
-csharp
-Copy code
-├── app.py                 # Main Flask application
-├── templates/             # HTML templates
-│   ├── home.html
-│   ├── login.html
-│   ├── signup.html
-│   ├── dashboard.html
-│   ├── profile.html
-│   └── settings.html
-├── static/                # CSS, JS, images
-├── data.json              # Local storage (auto-created if missing)
-├── requirements.txt       # Python dependencies
-└── README.md
-Usage
-Sign up with a new account or log in.
-
-Access the dashboard to manage tasks.
-
-Update your profile and settings.
-
-Toggle dark mode and email notifications.
-
-Delete tasks or your account if needed.
-
-Future Improvements
-Profile picture upload and storage
-
-Task categories, deadlines, and reminders
-
-Real-time collaboration
-
-REST API for external integrations
-
-Email notifications for task updates
-
-License
-This project is MIT Licensed.
-
-Acknowledgements
-Flask community and extensions: Flask-Login, Flask-Bcrypt
-
-MongoDB Atlas for cloud storage support
-
-Inspired by common SaaS task management platforms
-
-yaml
-Copy code
+<details open>
+	<summary><b><code>C:\USERS\ARYAN\DESKTOP\README\README-AI\TASKHUB/</code></b></summary>
+	<!-- __root__ Submodule -->
+	<details>
+		<summary><b>__root__</b></summary>
+		<blockquote>
+			<div class='directory-path' style='padding: 8px 0; color: #666;'>
+				<code><b>⦿ __root__</b></code>
+			<table style='width: 100%; border-collapse: collapse;'>
+			<thead>
+				<tr style='background-color: #f8f9fa;'>
+					<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
+					<th style='text-align: left; padding: 8px;'>Summary</th>
+				</tr>
+			</thead>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/app.py'>app.py</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/requirements.txt'>requirements.txt</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+			</table>
+		</blockquote>
+	</details>
+	<!-- templates Submodule -->
+	<details>
+		<summary><b>templates</b></summary>
+		<blockquote>
+			<div class='directory-path' style='padding: 8px 0; color: #666;'>
+				<code><b>⦿ templates</b></code>
+			<table style='width: 100%; border-collapse: collapse;'>
+			<thead>
+				<tr style='background-color: #f8f9fa;'>
+					<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
+					<th style='text-align: left; padding: 8px;'>Summary</th>
+				</tr>
+			</thead>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\base.html'>base.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\dashboard.html'>dashboard.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\home.html'>home.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\login.html'>login.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\profile.html'>profile.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\settings.html'>settings.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\signup.html'>signup.html</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+				<tr style='border-bottom: 1px solid #eee;'>
+					<td style='padding: 8px;'><b><a href='C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub/blob/master/templates\styles.css'>styles.css</a></b></td>
+					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
+				</tr>
+			</table>
+		</blockquote>
+	</details>
+</details>
 
 ---
 
-I can also create a **`requirements.txt`** for this project automatically so it’s ready to install with `pip`.  
+## Getting Started
 
-Do you want me to do that next?
+### Prerequisites
+
+This project requires the following dependencies:
+
+- **Programming Language:** HTML
+- **Package Manager:** Pip
+
+### Installation
+
+Build TaskHub from the source and intsall dependencies:
+
+1. **Clone the repository:**
+
+    ```sh
+    ❯ git clone ../TaskHub
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```sh
+    ❯ cd TaskHub
+    ```
+
+3. **Install the dependencies:**
+
+<!-- SHIELDS BADGE CURRENTLY DISABLED -->
+	<!-- [![pip][pip-shield]][pip-link] -->
+	<!-- REFERENCE LINKS -->
+	<!-- [pip-shield]: None -->
+	<!-- [pip-link]: None -->
+
+	**Using [pip](None):**
+
+	```sh
+	❯ echo 'INSERT-INSTALL-COMMAND-HERE'
+	```
+
+### Usage
+
+Run the project with:
+
+**Using [pip](None):**
+```sh
+echo 'INSERT-RUN-COMMAND-HERE'
+```
+
+### Testing
+
+Taskhub uses the {__test_framework__} test framework. Run the test suite with:
+
+**Using [pip](None):**
+```sh
+echo 'INSERT-TEST-COMMAND-HERE'
+```
+
+---
+
+## Roadmap
+
+- [X] **`Task 1`**: <strike>Implement feature one.</strike>
+- [ ] **`Task 2`**: Implement feature two.
+- [ ] **`Task 3`**: Implement feature three.
+
+---
+
+## Contributing
+
+- **💬 [Join the Discussions](https://LOCAL/readme-ai/TaskHub/discussions)**: Share your insights, provide feedback, or ask questions.
+- **🐛 [Report Issues](https://LOCAL/readme-ai/TaskHub/issues)**: Submit bugs found or log feature requests for the `TaskHub` project.
+- **💡 [Submit Pull Requests](https://LOCAL/readme-ai/TaskHub/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+
+<details closed>
+<summary>Contributing Guidelines</summary>
+
+1. **Fork the Repository**: Start by forking the project repository to your LOCAL account.
+2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
+   ```sh
+   git clone C:\Users\Aryan\Desktop\readme\readme-ai\TaskHub
+   ```
+3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
+   ```sh
+   git checkout -b new-feature-x
+   ```
+4. **Make Your Changes**: Develop and test your changes locally.
+5. **Commit Your Changes**: Commit with a clear message describing your updates.
+   ```sh
+   git commit -m 'Implemented new feature x.'
+   ```
+6. **Push to LOCAL**: Push the changes to your forked repository.
+   ```sh
+   git push origin new-feature-x
+   ```
+7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
+8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
+</details>
+
+<details closed>
+<summary>Contributor Graph</summary>
+<br>
+<p align="left">
+   <a href="https://LOCAL{/readme-ai/TaskHub/}graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=readme-ai/TaskHub">
+   </a>
+</p>
+</details>
+
+---
+
+## License
+
+Taskhub is protected under the [LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+
+---
+
+## Acknowledgments
+
+- Credit `contributors`, `inspiration`, `references`, etc.
+
+<div align="right">
+
+[![][back-to-top]](#top)
+
+</div>
 
 
+[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 
 
-
-
+---
