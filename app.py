@@ -15,7 +15,7 @@ bcrypt = Bcrypt(app)
 
 # Database / Storage Setup
 USE_MONGODB = True
-MONGO_URI = "mongodb+srv://Tempdiablo:Thunderstrikes27@cluster0.8z7uvhs.mongodb.net/?appName=Cluster0"
+MONGO_URI = ""
 
 if MONGO_URI:
     try:
