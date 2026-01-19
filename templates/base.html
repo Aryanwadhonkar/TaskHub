@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}TaskHub{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212; /* Deep dark background */
+      color: #EDEDED;           /* Soft white text for readability */
+    }
+    
+    body.dark-mode .bg-white {
+      background-color: #1E1E2F !important; /* Slightly purple-dark for cards/panels */
+    }
+    
+    body.dark-mode .bg-white\/20 {
+      background-color: rgba(30, 30, 47, 0.8) !important;
+    }
+    
+    body.dark-mode .bg-white\/10 {
+      background-color: rgba(30, 30, 47, 0.4) !important;
+    }
+    
+    body.dark-mode .bg-amber-300 {
+      background-color: #33334D !important; /* Neutral accent background */
+    }
+    
+    body.dark-mode .text-gray-800 {
+      color: #EDEDED !important; /* Main text color */
+    }
+    
+    body.dark-mode .text-gray-600 {
+      color: #A3A3B3 !important; /* Subtle text */
+    }
+    
+    body.dark-mode .text-amber-400 {
+      color: #FFB86C !important; /* Accent text color */
+    }
+    
+    body.dark-mode .border-white\/30 {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    body.dark-mode .shadow-xl {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    /* Toggle switch styles */
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #22D3EE; /* Cyan accent for toggle */
+    }
+    
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #22D3EE;
+    }
+  </style>
+</head>
+
+<body class="bg-amber-300 {% if current_user.is_authenticated and current_user.dark_mode %}dark-mode{% endif %}">
+  
+  {% block content %}{% endblock %}
+  
+  <script>
+    // Apply dark mode on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      if (isDarkMode) {
+        console.log('Dark mode is enabled');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+}
+
+.dark-mode {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}
+
+.dark-mode .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark-mode .text-gray-600 {
+  color: #a0aec0;
+}

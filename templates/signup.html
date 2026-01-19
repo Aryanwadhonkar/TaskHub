@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-clamp: 2;
+    }
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #f59e0b, #d97706, #92400e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body class="bg-amber-300 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/20 backdrop-blur-2xl border-b border-white/30 shadow-xl">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-800 flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+          </svg>
+        </div>
+        <span class="gradient-text">TaskHub</span>
+      </h1>
+      <nav class="space-x-4">
+        <a href="{{ url_for('home') }}" class="px-4 py-2 bg-white/30 hover:bg-white/50 text-gray-800 font-semibold rounded-xl transition-all duration-300">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center p-6">
+    <div class="w-full max-w-md">
+      <!-- Glassmorphism Signup Form -->
+      <div class="p-8 bg-white/20 backdrop-blur-2xl border border-white/30 rounded-xl shadow-2xl">
+        <h2 class="text-3xl font-bold mb-6 text-center">Create Account</h2>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-4 p-3 rounded-lg text-sm {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="{{ url_for('signup') }}" class="space-y-4">
+          <div>
+            <label class="block mb-2 font-semibold text-lg" for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" 
+                   class="w-full px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400"/>
+          </div>
+
+          <div>
+            <label class="block mb-2 font-semibold text-lg" for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com"
+                   class="w-full px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400"/>
+          </div>
+
+          <div>
+            <label class="block mb-2 font-semibold text-lg" for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password"
+                   class="w-full px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400"/>
+          </div>
+
+          <button type="submit" 
+                  class="w-full py-3 rounded-xl bg-white/30 hover:bg-white/50 text-amber-700 font-semibold text-lg transition-all duration-300 shadow-xl">
+            Sign Up
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-white/80">
+          Already have an account?
+          <a href="{{ url_for('login') }}" class="text-amber-700 font-semibold hover:underline">
+            Login
+          </a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white/20 backdrop-blur-2xl border-t border-white/30 shadow-xl">
+    <div class="max-w-6xl mx-auto px-6 py-4 text-center text-gray-700">
+      <p>&copy; 2026 TaskHub. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

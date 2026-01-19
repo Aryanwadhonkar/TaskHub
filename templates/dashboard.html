@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - TaskHub{% endblock %}
+
+{% block content %}
+<div class="main flex min-h-screen">
+
+  <!-- Slide Menu -->
+  <div id="slidemenu"
+       class="w-48 p-6 bg-white/20 backdrop-blur-2xl border border-white/30 rounded-xl shadow-2xl my-8 mx-4 relative shrink-0">
+    <ul class="space-y-4">
+      <li class="h-12 px-4 flex items-center rounded-xl bg-white/30 hover:bg-white/50 font-semibold text-xl shadow-xl">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      </li>
+      <li class="h-12 px-4 flex items-center rounded-xl bg-white/30 hover:bg-white/50 font-semibold text-xl transition-all shadow-xl">
+        <a href="{{ url_for('profile') }}">Profile</a>
+      </li>
+      <li class="h-12 px-4 flex items-center rounded-xl bg-white/30 hover:bg-white/50 font-semibold text-xl transition-all shadow-xl">
+        <a href="{{ url_for('settings') }}">Settings</a>
+      </li>
+    </ul>
+
+    <a href="{{ url_for('logout') }}"
+       class="absolute bottom-6 left-6 right-6 h-12 flex items-center justify-center rounded-xl bg-white/30 hover:bg-red-50 font-semibold text-xl transition-all shadow-xl text-red-700">
+      Logout
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6 mt-[15px] overflow-y-auto">
+
+    <!-- Welcome Heading -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-4xl font-bold cursor-pointer">Welcome, {{ user.name }}!</h1>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="mb-4 p-4 rounded-xl {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Add Task Form + Task Overview -->
+    <div class="flex gap-6 mb-8 flex-wrap">
+      <!-- Add Task -->
+      <div class="p-6 bg-white/20 backdrop-blur-2xl border border-white/30 rounded-xl shadow-xl flex-1 min-w-0">
+        <h2 class="text-2xl font-bold mb-4">Add New Task</h2>
+        <form action="{{ url_for('add_task') }}" method="POST" class="flex flex-col gap-4">
+          <input type="text" name="title" placeholder="What needs to be done?" required
+                 class="px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400">
+          <textarea name="description" placeholder="Task description (optional)" rows="2"
+                    class="px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+          <button type="submit" class="px-6 py-2 rounded-xl bg-white/30 hover:bg-white/50 font-semibold transition-all shadow-md self-start">
+            Add Task
+          </button>
+        </form>
+      </div>
+
+      <!-- Task Overview -->
+      <div class="p-6 bg-white/20 backdrop-blur-2xl border border-white/30 rounded-2xl shadow-xl w-80">
+        <h3 class="text-lg font-bold mb-4 text-gray-800">Task Overview</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/30 p-3 rounded-xl border border-white/20 text-center">
+            <p class="text-xs font-semibold text-gray-600 uppercase">Total</p>
+            <p class="text-2xl font-bold text-gray-800">{{ tasks|length }}</p>
+          </div>
+          <div class="bg-green-500/20 p-3 rounded-xl border border-white/20 text-center">
+            <p class="text-xs font-semibold text-green-700 uppercase">Done</p>
+            <p class="text-2xl font-bold text-green-700">
+              {{ tasks|selectattr('status', 'equalto', 'Completed')|list|length }}
+            </p>
+          </div>
+          <div class="bg-amber-500/20 p-3 rounded-xl border border-white/20 text-center col-span-2">
+            <p class="text-xs font-semibold text-amber-800 uppercase">Pending</p>
+            <p class="text-2xl font-bold text-amber-800">
+              {{ tasks|selectattr('status', 'equalto', 'Pending')|list|length }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasks List + Details Panel -->
+    <div class="flex gap-6 items-start max-w-6xl flex-wrap">
+      <!-- Tasks List -->
+      <div class="flex-1">
+        <div class="grid gap-4">
+          {% for task in tasks %}
+            <div class="cursor-pointer group" 
+                 data-title="{{ task.title | replace("'", "\\'") }}" 
+                 data-description="{{ (task.description or '') | replace("'", "\\'") | replace('\n', '\\n') }}" 
+                 data-status="{{ task.status }}" 
+                 onclick="showTaskDetails(this.dataset.title, this.dataset.description, this.dataset.status)">
+              
+              <div class="p-4 bg-white/20 backdrop-blur-2xl border border-white/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col gap-4 group-hover:bg-white/30">
+                
+                <!-- Task Info -->
+                <div class="flex justify-between items-center">
+                  <div id="display-{{ task._id or task.id }}" class="flex-1">
+                    <h3 class="text-xl font-semibold {% if task.status == 'Completed' %}line-through text-gray-500{% endif %}">
+                      {{ task.title }}
+                    </h3>
+                    <span class="text-sm {% if task.status == 'Completed' %}text-green-600{% else %}text-amber-700{% endif %} font-medium">
+                      {{ task.status }}
+                    </span>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="flex gap-2 shrink-0" id="actions-{{ task._id or task.id }}">
+                    {% if task.status != 'Completed' %}
+                      <a href="{{ url_for('complete_task', task_id=task._id or task.id) }}" onclick="event.stopPropagation();"
+                         class="px-3 py-1.5 rounded-lg bg-green-500/20 hover:bg-green-500/40 text-green-700 text-sm font-semibold transition-all" id="done-link-{{ task._id or task.id }}">
+                        Done
+                      </a>
+                      <button onclick="toggleEdit('{{ task._id or task.id }}'); event.stopPropagation();" 
+                              class="px-3 py-1.5 rounded-lg bg-white/30 hover:bg-white/50 text-amber-700 text-sm font-semibold transition-all" id="edit-btn-{{ task._id or task.id }}">
+                        Edit
+                      </button>
+                    {% endif %}
+                    <form action="{{ url_for('delete_task', task_id=task._id or task.id) }}" method="POST" class="flex gap-2" onclick="event.stopPropagation();">
+                      <button type="submit" class="px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-700 text-sm font-semibold transition-all">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <!-- Edit Form (Hidden) -->
+                <form id="edit-form-{{ task._id or task.id }}" action="{{ url_for('edit_task', task_id=task._id or task.id) }}" method="POST" class="hidden flex flex-col gap-2" onclick="event.stopPropagation();">
+                  <input type="text" name="title" value="{{ task.title }}" required
+                         class="px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                  <textarea name="description" rows="3" placeholder="Task description (optional)"
+                            class="px-4 py-2 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400">{{ task.description or '' }}</textarea>
+                  <div class="flex gap-2">
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-green-500/20 hover:bg-green-500/40 text-green-700 font-semibold transition-all">
+                      Save
+                    </button>
+                    <button type="button" onclick="toggleEdit('{{ task._id or task.id }}')" 
+                            class="px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-700 font-semibold transition-all">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          {% else %}
+            <div class="text-center py-12 text-gray-600 italic">
+              No tasks yet. Add one above!
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Right Panel (Task Details) -->
+      <div id="right-panel" class="w-80 flex flex-col gap-6">
+        <div id="task-details" class="p-6 bg-white/30 backdrop-blur-3xl border border-white/40 rounded-2xl shadow-2xl flex flex-col gap-4">
+          <div class="flex flex-col items-center justify-center h-full text-center py-10 text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            <p class="font-medium">Select a task to view its full details</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- External JS -->
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}
