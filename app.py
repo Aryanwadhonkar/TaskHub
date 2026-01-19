@@ -15,7 +15,7 @@ bcrypt = Bcrypt(app)
 
 # Database / Storage Setup
 USE_MONGODB = True
-MONGO_URI = ""
+MONGO_URI = "your_mongodb_connection_string_here"
 
 if MONGO_URI:
     try:
